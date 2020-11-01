@@ -26,7 +26,7 @@ class Main
     int n = input.nextInt();
     try 
     {
-      while (n !=69420)
+      while (n+1 != n)
       {
         arrayInt.add(n);
         System.out.println(arrayInt);
