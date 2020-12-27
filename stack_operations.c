@@ -39,7 +39,7 @@ void options(st* s)
         pSTACK(s);
         options(s);
     case 9:
-        break;
+        exit(0);
     default:
         printf("Invalid Option.");
         options(s);
