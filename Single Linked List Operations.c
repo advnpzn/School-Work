@@ -34,6 +34,7 @@ void create(){
         }
         
     }
+    return;
 }
 
 void display(){
@@ -42,6 +43,7 @@ void display(){
         printf("%d--->",temp->val);
         temp = temp->next;
     }
+    return;
 }
 
 void insert(){
@@ -98,21 +100,53 @@ void insert(){
         printf("\nEnter from the choices 1-3.");
         break;
     }
+    return;
 }
 
 void find(){
-    printf("Insert");
+    N* temp = head;
+    N* p;
+    int elem,c=0;
+    printf("\nEnter the value to find : ");
+    scanf("%d",&elem);
+    while (temp!=NULL){
+        if (temp->val == elem){
+            p = temp;
+            c = 1;
+        }
+        temp = temp->next;
+    }
+    if (c==1){
+        printf("\nValue %d is present in the List.\nPosition(address) of the Node : %d",elem,p);
+    }
+    else{
+        printf("\nValue is not present in any node in the list.");
+    }
+    return;
 }
 
 void delete(){
-    printf("Insert");
+    N* temp = head;
+    int pos,i=1;
+    display();
+    printf("\nEnter the Position of the Node that you want to delete : ");
+    scanf("%d",&pos);
+    while(i<pos-1){
+        temp = temp->next;
+        i++;
+    }
+    N* add = temp->next;
+    temp->next = temp->next->next;
+    free(add);
+    printf("\nNode deleted Successfully !");
+    return;
 }
 
 
 void main(){
     int choose;
     do{
-        printf("\n1.Create\n2.Display\n3.Insert\n4.Find\n5.Delete\n6.Exit\n\nEnter your Choice : ");
+        printf("\n\n1.Create\n2.Display\n3.Insert\n4.Find\n5.Delete\n6.Exit\n\nEnter your Choice : ");
         scanf("%d",&choose);
         switch (choose){
         case 1:
