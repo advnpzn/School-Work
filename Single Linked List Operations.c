@@ -1,103 +1,140 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct node
-{
-    int elem;
-    struct node *next;
-};
-typedef struct node n;
 
-void display(n *h);
-void insertAtBeginning(n** h, int elem);
-void insertAtEnd(n** h, int elem);
-void insertAfter(n* node, int elem);
-void search(n* h, int elem);
+
+struct Node{
+    int val;
+    struct Node *next;
+};
+typedef struct Node N;
+
+N* head;
+
+
+
+void create(){
+    int i,n;
+    printf("\nEnter the no.of nodes to be inserted : ");
+    scanf("%d",&n);
+    N* temp;
+    N* newNode;
+    for (i=1; i<=n; i++){
+        newNode = malloc(sizeof(N));
+        printf("\nEnter the Value : ");
+        scanf("%d",&newNode->val);
+        newNode->next = NULL;
+        if (i==1){
+            head = newNode;
+            temp = head;
+        }
+        else{
+            temp->next = newNode;
+            temp = newNode;
+        }
+        
+    }
+}
+
+void display(){
+    N* temp = head;
+    while (temp!=NULL){
+        printf("%d--->",temp->val);
+        temp = temp->next;
+    }
+}
+
+void insert(){
+    int choose;
+    printf("\n1.Beginning\n2.Middle\n3.End\n\nEnter your Choice : ");
+    scanf("%d",&choose);
+    switch(choose){
+    case 2:     /*MIDDLE*/
+    {
+        int i=1,pos;
+        N* temp = head;
+        N* newNode = malloc(sizeof(N));
+        printf("\nEnter the Value : ");
+        scanf("%d",&newNode->val);
+        display();
+        printf("\nEnter the position to insert the Node : ");
+        scanf("%d",&pos);
+        newNode->next = NULL;
+        while (i<pos-1){
+            temp = temp->next;
+            i++;
+        }
+        newNode->next = temp->next;
+        temp->next = newNode; 
+        temp = newNode;
+        display();
+        break;
+    }
+    case 1:     /*BEGINNING*/
+    {
+        N* newNode = malloc(sizeof(N));
+        printf("\nEnter the Value : ");
+        scanf("%d",&newNode->val);
+        newNode->next = head;
+        head = newNode;
+        printf("\nNode inserted Successfully !");
+        break;
+    }
+    case 3:     /*END*/
+    {
+        N* temp = head;
+        N* newNode = malloc(sizeof(N));
+        printf("\nEnter the Value : ");
+        scanf("%d",&newNode->val);
+        while (temp->next!=NULL){
+            temp = temp->next;
+        }
+        temp->next = newNode;
+        newNode->next = NULL;
+        printf("\nNode inserted Successfully !");
+        break;
+    }
+    default:
+        printf("\nEnter from the choices 1-3.");
+        break;
+    }
+}
+
+void find(){
+    printf("Insert");
+}
+
+void delete(){
+    printf("Insert");
+}
+
 
 void main(){
-    n *head;
-    n *one = malloc(sizeof(n));
-    n *two = malloc(sizeof(n));
-    n *three = malloc(sizeof(n));
-
-    one -> elem = 1;
-    two -> elem = 2;
-    three -> elem = 3;
-
-    one -> next = two;
-    two -> next = three;
-    three -> next = NULL;
-    head = one;
-    display(head);
-    insertAtBeginning(&head,37);
-    printf("After Inserting at the beginning ...\n");
-    display(head);
-    insertAtEnd(&head, 6699);
-    printf("After Inserting at the End...\n");
-    display(head);
-    insertAfter(one -> next, 420);
-    printf("\nAfter inserting after the specified Node...\n");
-    display(head);
-    search(head, 37);
-}
-
-void display(n *h){
-    while (h != NULL){
-        printf("%d--->",h -> elem);
-        h = h -> next;
-    }
-}
-
-void insertAtBeginning(n** h, int elem){
-    n *newNode = malloc(sizeof(n));
-    newNode -> elem = elem;
-    newNode -> next = *h;
-    *h = newNode;
-    return;
-}
-
-void insertAtEnd(n** h, int elem){
-    n *newNode = malloc(sizeof(n));
-    n *temp = *h;
-    newNode -> elem = elem;
-    newNode -> next = NULL;
-
-    if (*h == NULL){
-        *h = newNode;
-        return;
-    }
-
-    while (temp -> next != NULL){
-        temp = temp -> next;
-    }
-    temp -> next = newNode;
-    return;
-}
-
-void insertAfter(n* node, int elem){
-    if (node == NULL){
-        printf("The previous node cannot be NULL");
-        return;
-    }
-    n *newNode = malloc(sizeof(n));
-    newNode -> elem = elem;
-    newNode -> next = node -> next;
-    node -> next = newNode;
-    return;
-}
-
-void search(n* h, int elem){
-    int c = 0;
-    n* a;
-    while (h -> next != NULL){
-        if (h -> elem == elem){
-            c = 1;
-            a = h ;
+    int choose;
+    do{
+        printf("\n1.Create\n2.Display\n3.Insert\n4.Find\n5.Delete\n6.Exit\n\nEnter your Choice : ");
+        scanf("%d",&choose);
+        switch (choose){
+        case 1:
+            create();
+            break;
+        case 2:
+            display();
+            break;
+        case 3:
+            insert();
+            break;
+        case 4:
+            find();
+            break;
+        case 5:
+            delete();
+            break;
+        case 6:
+            exit(0);
+        default:
+            printf("\nChoose 1-6 .");
+            break;
         }
-        h = h -> next;
-    }
-    if (c == 1)
-        printf("\nElement is present in the Linked List.\nThe address is %d",a);
-    else 
-        printf("\nElement not found in the Linked list.");
+    } while (choose < 7);
 }
