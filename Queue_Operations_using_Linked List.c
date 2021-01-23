@@ -36,7 +36,7 @@ void deQUEUE()
 {
     if (FRONT == NULL)
     {
-        printf("STACK IS EMPTY!");
+        printf("QUEUE IS EMPTY!");
     }
     else
     {
@@ -52,7 +52,7 @@ void display()
 {
     if (FRONT == NULL)
     {
-        printf("STACK IS EMPTY!");
+        printf("QUEUE IS EMPTY!");
     }
     else
     {
