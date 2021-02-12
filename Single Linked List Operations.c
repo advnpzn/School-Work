@@ -143,7 +143,7 @@ void delete(){
 }
 
 
-void main(){
+int main(){
     int choose;
     do{
         printf("\n\n1.Create\n2.Display\n3.Insert\n4.Find\n5.Delete\n6.Exit\n\nEnter your Choice : ");
