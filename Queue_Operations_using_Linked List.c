@@ -65,7 +65,7 @@ void display()
     }
 }
 
-void main()
+int main()
 {
     int choose;
     do
