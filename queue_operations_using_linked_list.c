@@ -8,8 +8,10 @@ struct Node
 };
 typedef struct Node N;
 
+
 N *FRONT = NULL;
 N *REAR = NULL;
+
 
 void enQUEUE()
 {
@@ -32,6 +34,7 @@ void enQUEUE()
     printf("\nSuccessfull!\n");
 }
 
+
 void deQUEUE()
 {
     if (FRONT == NULL)
@@ -47,6 +50,7 @@ void deQUEUE()
         printf("\nSuccessful!\n");
     }
 }
+
 
 void display()
 {
@@ -64,6 +68,7 @@ void display()
         }
     }
 }
+
 
 int main()
 {
@@ -90,4 +95,6 @@ int main()
             printf("\nChoose 1-4.");
         }
     } while (1);
+    
+    return 0;
 }
