@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAX 10
 
+#define MAX 10
 
 
 struct queue
@@ -13,12 +13,14 @@ struct queue
 };
 typedef struct queue qu;
 
+
 void enqueue(qu* q);
 void dequeue(qu* q);
 int isEmpty(qu* q);
 int isFull(qu* q);
 void peek(qu* q);
 void pQUEUE(qu* q);
+
 
 void options(qu* q)
 {   
@@ -47,6 +49,7 @@ void options(qu* q)
     }
 }
 
+
 void enqueue(qu* q)
 {
     int elem;
@@ -63,6 +66,7 @@ void enqueue(qu* q)
     }
     
 }
+
 
 void dequeue(qu* q)
 {
@@ -81,6 +85,7 @@ void dequeue(qu* q)
         
 }
 
+
 int isEmpty(qu* q)
 {
     if (q -> FRONT == -1)
@@ -88,6 +93,7 @@ int isEmpty(qu* q)
     else
         return 0;
 }
+
 
 int isFull(qu* q)
 {
@@ -97,6 +103,7 @@ int isFull(qu* q)
         return 0;
 }
 
+
 void peek(qu* q)
 {
     if (isEmpty(q))
@@ -104,6 +111,7 @@ void peek(qu* q)
     else
         printf("FRONT ELEMENT : %d",q -> item[q -> FRONT]);
 }
+
 
 void pQUEUE(qu* q)
 {
@@ -117,9 +125,7 @@ void pQUEUE(qu* q)
         for (int i = q -> FRONT; i <= q -> REAR; i++){
             printf("%d,",q -> item[i]);
         }
-    }
-    
-        
+    }     
 }
 
 
@@ -130,4 +136,5 @@ int main()
     q -> FRONT = -1;
     q -> REAR = -1;
     options(q);
+    return 0;
 }
