@@ -21,13 +21,17 @@ int main(){
     delete();
     display();
     search();
+    
+    return 0;
 }
+
 
 void display(){
     for (i=0; i<n; i++){
         printf("[%d]",list[i]);
     }
 }
+
 
 void insert(){
     int pos,elem;
@@ -47,6 +51,7 @@ void insert(){
     }
 }
 
+
 void delete(){
     int pos;
     printf("\nEnter the Position to Delete : ");
@@ -56,6 +61,7 @@ void delete(){
     }
     n = n-1;
 }
+
 
 void search(){
     int search;
