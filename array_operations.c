@@ -1,10 +1,13 @@
 #include<stdio.h>
 #include<stdlib.h>
+
 int lim,array[10000];
+
 
 int cmpfunc (const void * a, const void * b) {
    return ( *(int*)a - *(int*)b );
 }
+
 
 void displayArray(){
     printf("Array = ");
@@ -12,8 +15,8 @@ void displayArray(){
     {
         printf(" %d ",array[i]);
     }
-    return;
 }
+
 
 void createArray(){
     
@@ -26,6 +29,7 @@ void createArray(){
     }
     displayArray();
 }
+
 
 void deleteArray(){
     int posDel,i;
@@ -45,8 +49,8 @@ void deleteArray(){
             printf(" %d ",array[i]);
     }
     lim-=1;
-
 }
+
 
 void insertArray(){
     int posIns,i,elem;
@@ -70,9 +74,9 @@ void insertArray(){
         }
     }
     lim+=1;
-    
-
 }
+
+
 void sortArray(){
     printf("\nArray before Sorting : \n");
     displayArray();
@@ -80,6 +84,7 @@ void sortArray(){
     printf("\nArray after Sorting : \n");
     displayArray();
 }
+
 
 void operations(){
     int choose;
@@ -114,8 +119,9 @@ void operations(){
     }
 }
 
+
 int main(){
     createArray();
     operations();
-    
+    return 0;
 }
