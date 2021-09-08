@@ -1,16 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
-
 struct Node{
     int val;
     struct Node *next;
 };
 typedef struct Node N;
 
-N* head;
 
+N* head;
 
 
 void create(){
@@ -31,11 +29,10 @@ void create(){
         else{
             temp->next = newNode;
             temp = newNode;
-        }
-        
+        } 
     }
-    return;
 }
+
 
 void display(){
     N* temp = head;
@@ -43,8 +40,8 @@ void display(){
         printf("%d--->",temp->val);
         temp = temp->next;
     }
-    return;
 }
+
 
 void insert(){
     int choose;
@@ -100,8 +97,8 @@ void insert(){
         printf("\nEnter from the choices 1-3.");
         break;
     }
-    return;
 }
+
 
 void find(){
     N* temp = head;
@@ -122,8 +119,8 @@ void find(){
     else{
         printf("\nValue is not present in any node in the list.");
     }
-    return;
 }
+
 
 void delete(){
     N* temp = head;
@@ -139,7 +136,6 @@ void delete(){
     temp->next = temp->next->next;
     free(add);
     printf("\nNode deleted Successfully !");
-    return;
 }
 
 
@@ -171,4 +167,6 @@ int main(){
             break;
         }
     } while (choose < 7);
+    
+    return 0;
 }
