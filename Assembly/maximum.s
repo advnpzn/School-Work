@@ -1,7 +1,8 @@
  # x86 Assembly program to find the maximum number among a group of numbers.
- # %edi - For storing the index
- # %eax - For storing the current element/data
- # %ebx - For storing the largest number
+ #       %edi - For storing the index
+ #       %eax - For storing the current element/data
+ #       %ebx - For storing the largest number
+
 
     .section .data
 
