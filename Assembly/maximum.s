@@ -12,7 +12,7 @@ data_items:
     .section .text    
 
 
-    .globl _start
+    .globl _start                       # Both .globl symbol, .global symbol is accepted in GAS. Refer https://sourceware.org/binutils/docs/as/Global.html
 
 _start:
 
