@@ -6,7 +6,7 @@
     .section .data
 
 data_items:
-    .long 22,56,47,54,11,89,77,82,0    # .long corresponds to 4 bytes. So each number is reserved 4 bytes of memory.
+    .long 22,56,47,54,11,89,77,82,0     # .long corresponds to 4 bytes. So each number is reserved 4 bytes of memory.
 
 
     .section .text    
