@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-class Main
+class ListOperations
 {
   public static void main(String[] args) 
   {
