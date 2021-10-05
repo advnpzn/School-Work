@@ -30,7 +30,7 @@ start_loop:
     cmpl %ebx, %eax                     # compare the largest number in %ebx with the current number in #eax
     jle start_loop                      # if the number in %eax is smaller or equal to the one in %ebx, will jump to the start_loop
 
-    movl %eax, %ebx                     # else, if the number in %eax > %ebx , then the number in %eax is stored in %ebx 
+    movl %eax, %ebx                     # else, if the number in %eax > %ebx , then the number in %eax is stored in %ebx as the current largest number.
     jmp start_loop                      # jump to start_loop and repeat the process, until the data in %eax is not 0
 
 exit_loop:
