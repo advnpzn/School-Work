@@ -37,6 +37,7 @@ exit_loop:
 
     movl $1, %eax                       # mov linux syscall exit() i.e $1 to %eax register
     int $0x80                           # interrupt linux kernel to execute the syscall in %eax
-                                        # the maximum number is stored in the %ebx register, view it by typing echo $? in the shell.
+                                        # the maximum number is stored in the %ebx register
+                                        # view it by typing echo $? in the shell which fetches the value in the exit status. i.e from the exit syscall.
 
 
