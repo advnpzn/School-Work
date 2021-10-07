@@ -3,7 +3,7 @@
     .section .data
 
 data_items:
-    .long 44, 11, 56, 74, 2, 86, 32, 0
+    .long 44, 11, 56, 74, 2, 86, 32, 255
 
 
     .section .text
@@ -19,7 +19,7 @@ _start:
 
 start_loop:
 
-    cmpl $0, %eax
+    cmpl $255, %eax
     je exit_loop
     incl %edi
     movl data_items(, %edi, 4), %eax
