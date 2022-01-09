@@ -14,16 +14,21 @@ struct node
 };
 
 
+struct node *head;
+
+
 /* Function prototype(s) */ 
 void printNodes(struct node *n);
 void freeNodes(struct node *n);
+void insertNode(struct node *n, int pos);
+int listLength(struct node *n);
 
 
 /* Driver function */
 int main()
 {
-    int no_of_nodes;
-    struct node *head, *temp;
+    int no_of_nodes, insert_choice;
+    struct node *temp;
 
     /* Asking to enter the number of nodes */
     printf("Enter the number of nodes : ");
@@ -55,6 +60,25 @@ int main()
     temp -> next = NULL;    /* There's no next node to the last node in a single linked list, so giving it NULL. */
     
     printNodes(head);
+    printf("Wanna insert a Node ?\n1 : YES\n2 : NO\n(Press 1 or 2) : ");
+    switch (scanf("%d", &insert_choice))
+    {
+        case 1:
+                int pos;
+                printNodes(head);
+                printf("Enter the position [Note: Starting Position is 0] : ");
+                scanf("%d", &pos);
+                insertNode(head, pos);
+                break;
+    
+        case 2:
+                break;
+        default:
+            printf("Choose either 0 or 1.");
+            break;
+    }
+
+    printNodes(head);
     freeNodes(head);
     return 0;
 }   
@@ -62,6 +86,7 @@ int main()
 /* This function traverses through each Node and prints the Data resides in it. */
 void printNodes(struct node *n)
 {
+    //printf("%d", n -> data);
     while(n != NULL)
     {   
         if (n -> next != NULL)
@@ -84,4 +109,66 @@ void freeNodes(struct node *n)
         n = n -> next;
         free(temp);
     }
+}
+
+
+/* Inserting a Node at Nth position */
+void insertNode (struct node *head, int pos)
+{
+    int len = listLength(head);
+    struct node *n;
+
+    if (pos > len || pos < 0)
+    {
+        printf("Position you have chosen is out of bounds of the length of the Linked List.\n");
+    }
+
+    n = malloc(sizeof(struct node));
+    printf("Enter the Node data : ");
+    scanf("%d", &(n -> data));
+
+    if (pos == 0)
+    {
+        printf("Pos was 0, so HEAD\n");
+        n -> next = head;
+        head = n;
+        printNodes(head);
+    }   
+    else if ( pos == (len - 1) )
+    {
+        printf("Pos was last, so TAIL\n");
+
+        while ( head != NULL )
+        {
+            head = head -> next;
+        }
+        head -> next = n;
+        n -> next = NULL;
+    }
+    else
+    {
+        printf("Pos was middle, so owo\n");
+
+        for (int i = 0; i < pos - 1; i++)
+        {
+            head = head -> next;
+        }
+        n -> next = head -> next;
+        head -> next = n;
+    }
+
+    
+}
+
+
+int listLength(struct node *n)
+{
+    int count = 0;
+    while (n != NULL)
+    {
+        count++;
+        n = n -> next;
+    }
+
+    return count;
 }
