@@ -20,7 +20,7 @@ struct node *head;
 /* Function prototype(s) */ 
 void printNodes(struct node *n);
 void freeNodes(struct node *n);
-void insertNode(struct node *n, int pos);
+void insertNode(struct node *n, size_t pos);
 int listLength(struct node *n);
 
 
@@ -64,7 +64,7 @@ int main()
     switch (scanf("%d", &insert_choice))
     {
         case 1:
-                int pos;
+                size_t pos;
                 printNodes(head);
                 printf("Enter the position [Note: Starting Position is 0] : ");
                 scanf("%d", &pos);
