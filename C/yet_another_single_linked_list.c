@@ -4,23 +4,21 @@
 /* Importing necessary libraries */
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <string.h>
 
 /* Create a Node structure */
 struct node
 {
     int data;
-    struct node *next;
+    struct node* next;
 };
 
-
-struct node *head;
 
 
 /* Function prototype(s) */ 
 void printNodes(struct node *n);
 void freeNodes(struct node *n);
-void insertNode(struct node *n, size_t pos);
+void insertNode(struct node **n, int pos);
 int listLength(struct node *n);
 
 
@@ -28,6 +26,7 @@ int listLength(struct node *n);
 int main()
 {
     int no_of_nodes, insert_choice;
+    struct node *head;
     struct node *temp;
 
     /* Asking to enter the number of nodes */
@@ -38,6 +37,7 @@ int main()
     if (no_of_nodes >= 1 )
     {
         head = malloc(sizeof(struct node));
+        //printf("Head Node address = %d\n", head);
         printf("Enter Head Node's Data : ");
         scanf("%d", &(head -> data));
         head -> next = NULL;
@@ -60,32 +60,41 @@ int main()
     temp -> next = NULL;    /* There's no next node to the last node in a single linked list, so giving it NULL. */
     
     printNodes(head);
-    printf("Wanna insert a Node ?\n1 : YES\n2 : NO\n(Press 1 or 2) : ");
-    switch (scanf("%d", &insert_choice))
-    {
-        case 1:
-                size_t pos;
-                printNodes(head);
-                printf("Enter the position [Note: Starting Position is 0] : ");
-                scanf("%d", &pos);
-                insertNode(head, pos);
+    do{
+        printf("1.Insert Node\n2.Print Linked List\n3.Exit\nChoose : ");
+        scanf("%d", &insert_choice);
+        switch (insert_choice){
+            case 1:
+                    int pos;
+                    printNodes(head);
+                    printf("Enter the position [Note: Starting Position is 0] : ");
+                    scanf("%d", &pos);
+                    insertNode(&head, pos);
+                    break;
+        
+            case 2:
+                    printNodes(head);
+                    break;
+            case 3:
+                    exit(0);
+            default:
+                printf("Choose either 1 or 2 or 3.");
                 break;
-    
-        case 2:
-                break;
-        default:
-            printf("Choose either 0 or 1.");
-            break;
-    }
+        }
+
+        
+    }while(insert_choice > 0);
 
     printNodes(head);
     freeNodes(head);
+
     return 0;
 }   
 
 /* This function traverses through each Node and prints the Data resides in it. */
 void printNodes(struct node *n)
 {
+    //printf("Head Address (printNodes) : %d\n", n);
     //printf("%d", n -> data);
     while(n != NULL)
     {   
@@ -113,10 +122,13 @@ void freeNodes(struct node *n)
 
 
 /* Inserting a Node at Nth position */
-void insertNode (struct node *head, int pos)
+void insertNode (struct node **head, int pos)
 {
-    int len = listLength(head);
+    //printf("Head Address (insertNodes) : %d\n", head);
+
+    int len = listLength(*head);
     struct node *n;
+    struct node *temp = *head;
 
     if (pos > len || pos < 0)
     {
@@ -129,32 +141,32 @@ void insertNode (struct node *head, int pos)
 
     if (pos == 0)
     {
-        printf("Pos was 0, so HEAD\n");
-        n -> next = head;
-        head = n;
-        printNodes(head);
+        n -> next = *head;
+        *head = n;
+        printNodes(*head);
     }   
     else if ( pos == (len - 1) )
     {
-        printf("Pos was last, so TAIL\n");
-
-        while ( head != NULL )
+        while ( temp -> next != NULL )
         {
-            head = head -> next;
+
+            temp = temp -> next;
         }
-        head -> next = n;
+        temp -> next = n;
         n -> next = NULL;
+        printNodes(*head);
     }
     else
     {
-        printf("Pos was middle, so owo\n");
 
         for (int i = 0; i < pos - 1; i++)
         {
-            head = head -> next;
+            temp = temp -> next;
         }
-        n -> next = head -> next;
-        head -> next = n;
+        n -> next = temp -> next;
+        temp -> next = n;
+        printNodes(*head);
+
     }
 
     
